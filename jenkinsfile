@@ -4,14 +4,11 @@
 pipeline {
     agent any
     
-    tools {
-        terraform 'terraform'
-    }
     stages {
         stage('Terraform Format Check') {
             steps{
                 dir('terraform') {
-                    //sh 'pwd'
+                    bat 'cd'
                     bat 'terraform fmt'
                 }
             }
