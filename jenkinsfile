@@ -3,6 +3,10 @@
 
 pipeline {
     agent any
+    
+    tools {
+        terraform 'terraform'
+    }
     stages {
         stage('Terraform Format Check') {
             steps{
