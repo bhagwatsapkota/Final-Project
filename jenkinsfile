@@ -1,0 +1,15 @@
+
+//Author: Bhagwat Sapkota
+
+pipeline {
+    agent any
+
+    stage('Terraform Format Check') {
+        steps{
+            dir('terraform') {
+                sh 'pwd'
+                sh 'terraform fmt'
+            }
+        }
+    }
+}
