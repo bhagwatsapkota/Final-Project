@@ -8,7 +8,7 @@ pipeline {
             steps{
                 dir('terraform') {
                     //sh 'pwd'
-                    sh 'terraform fmt'
+                    bat 'terraform fmt'
                 }
             }
         }
