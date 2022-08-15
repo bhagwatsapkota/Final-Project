@@ -3,7 +3,7 @@
 
 pipeline {
     agent any
-
+    stages {
     stage('Terraform Format Check') {
         steps{
             dir('terraform') {
@@ -11,5 +11,6 @@ pipeline {
                 sh 'terraform fmt'
             }
         }
+    }
     }
 }
