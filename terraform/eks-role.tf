@@ -8,6 +8,7 @@ resource "aws_iam_role" "eks_master" {
         "Statement":[
         {
             "Action": "sts:AssumeRole",
+            "Action": "iam:createRole"
             "Effect": "Allow",
             "Principal": {
                 "Service": "eks.amazonaws.com"
@@ -39,6 +40,7 @@ resource "aws_iam_role" "eks-nodeGroup"{
     "Statement": [
         {
             "Action": "sts:AssumeRole",
+            "Action": "iam:createRole"
             "Effect": "Allow",
             "Principal": {
                 "Service": "ec2.amazonaws.com"
