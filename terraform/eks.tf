@@ -9,6 +9,9 @@ resource "aws_eks_cluster" "final-cluster" {
         subnet_ids = [aws_subnet.final-subnet-1.id, aws_subnet.final-subnet-2.id]
     }
 
+    # Enable EKS Cluster Control Plane Logging
+    enabled_cluster_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
+
     #Assign IAM ROLE permission to cluster
     depends_on = [
         aws_iam_role_policy_attachment.master-EKSCluster,
