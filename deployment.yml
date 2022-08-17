@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: final-project
+spec:
+  selector:
+    matchLabels:
+      run: final-project
+  replicas: 3
+  strategy: 
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        run: final-project
+    spec:
+      containers:
+      - name: final-project
+        image: nginx
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+          protocol: TCP

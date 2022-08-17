@@ -55,25 +55,25 @@ pipeline {
                 withAWS(credentials:'bhagwat-new',region:'us-east-2'){
                     echo 'Deploying docker image...'
                     sh 'aws eks --region us-east-2 update-kubeconfig --name final-cluster'
-                    //sh 'kubectl get services'
-                    //sh 'kubectl delete services nginx-service'
+                    sh 'kubectl get services'
+                    sh 'kubectl delete services nginx-service'
 
 
                     sh 'kubectl get nodes'
                     sh 'kubectl get pods --all-namespaces'
-                    //sh 'kubectl apply -f deployment.yml'
-                    //sh 'kubectl get deployments python-unittest-app'
-                   // sh 'kubectl describe deployments python-unittest-app'
-                   // sh 'kubectl get replicasets'
-                   // sh 'kubectl describe replicasets'
+                    sh 'kubectl apply -f deployment.yml'
+                    sh 'kubectl get deployments final-project'
+                    sh 'kubectl describe deployments final-project'
+                    sh 'kubectl get replicasets'
+                    sh 'kubectl describe replicasets'
 
-                    //sh 'kubectl expose deployment python-unittest-app  --port=80 --target-port=80  --name=nginx-service --type=LoadBalancer'
+                    sh 'kubectl expose deployment final-project  --port=80 --target-port=80  --name=nginx-service --type=LoadBalancer'
 
-                    //sh 'kubectl get service nginx-service' 
-                    //sh 'kubectl describe service nginx-service'
+                    sh 'kubectl get service nginx-service' 
+                    sh 'kubectl describe service nginx-service'
 
-                    //sh 'kubectl get nodes'
-                    //sh 'kubectl get pods --output=wide'
+                    sh 'kubectl get nodes'
+                    sh 'kubectl get pods --output=wide'
 
                 }
             }
