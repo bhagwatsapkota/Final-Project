@@ -46,7 +46,7 @@ pipeline {
                         sh 'ls -a'
                         sh 'terraform apply --auto-approve'
                     }
-                //}
+                }
             }
         }
     }
