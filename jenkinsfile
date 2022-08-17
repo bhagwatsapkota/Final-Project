@@ -36,10 +36,10 @@ pipeline {
 
         stage('Terraform Plan and Apply'){
             steps{
-                //withAWS(credentials:'bhagwat',region:'us-east-2'){
+                withAWS(credentials:'bhagwat-new',region:'us-east-2'){
                     dir('terraform'){
                         sh 'pwd'
-                        //sh 'aws iam list-users'
+                        sh 'aws iam list-users'
                         sh 'terraform plan -input=false -out tfplan'
                         //sh 'terraform show -no-color tfplan > tfplan.txt'
                         sh 'pwd'
