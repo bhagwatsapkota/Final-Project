@@ -8,8 +8,8 @@ pipeline {
         stage('Terraform Format Check') {
             steps{
                 dir('terraform') {
-                    bat 'cd'
-                    bat 'terraform fmt'
+                    sh 'pwd'
+                    sh 'terraform fmt'
                 }
             }
         }
