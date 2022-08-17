@@ -13,5 +13,43 @@ pipeline {
                 }
             }
         }
+
+        //Initializes terraform files
+        stage('Terraform Init') {
+            steps{
+                dir('terraform'){
+                    sh 'pwd'
+                    sh 'terraform init'
+                }
+            }
+        }
+
+        //Validate Scripts
+        stage('Terraform Validate') {
+            steps{
+                dir('terraform'){
+                    sh 'pwd'
+                    sh 'terraform validate'
+                }
+            }
+        }
+
+        stage('Terraform Plan and Apply'){
+            steps{
+                withAWS(credentials:'bhagwat',region:'us-east-2'){
+                    dir('terraform'){
+                        sh 'pwd'
+                        sh 'aws iam list-users'
+                        sh 'terraform plan -input=false -out tfplan'
+                        //sh 'terraform show -no-color tfplan > tfplan.txt'
+                        //sh 'pwd'
+                        //sh 'ls -a'
+                        //sh 'terraform apply --auto-approve'
+                    }
+                }
+            }
+        }
     }
+        
+    
 }
