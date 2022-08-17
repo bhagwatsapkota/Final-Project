@@ -81,7 +81,7 @@ pipeline {
 
         stage('Deploy Dynatrace Agent') {
             steps{
-                withAWS(credential:'bhagwat-new', region:'us-east-2'){
+                withAWS(credentials:'bhagwat-new', region:'us-east-2'){
                     echo 'Deploying Dynatrace agent'
                     sh 'kubectl create namespace dynatrace'
                     sh 'kubectl apply -f https://github.com/Dynatrace/dynatrace-operator/releases/download/v0.7.2/kubernetes.yaml'
