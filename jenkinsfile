@@ -83,8 +83,8 @@ pipeline {
             steps{
                 withAWS(credentials:'bhagwat-new', region:'us-east-2'){
                     echo 'Deploying Dynatrace agent'
-                    sh 'kubectl create namespace dynatrace'
-                    sh 'kubectl apply -f https://github.com/Dynatrace/dynatrace-operator/releases/download/v0.7.2/kubernetes.yaml'
+                    //sh 'kubectl create namespace dynatrace'
+                    //sh 'kubectl apply -f https://github.com/Dynatrace/dynatrace-operator/releases/download/v0.7.2/kubernetes.yaml'
                     sh 'kubectl -n dynatrace wait pod --for=condition=ready --selector=app.kubernetes.io/name=dynatrace-operator,app.kubernetes.io/component=webhook --timeout=300s'
                     sh 'kubectl apply -f dynakube.yaml'
                 }
