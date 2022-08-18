@@ -79,14 +79,15 @@ pipeline {
             }
         }
 
-        stage('Deploy Dynatrace Agent') {
+       //Destoy infra
+        stage('Destroy'){
             steps{
-                withAWS(credentials:'bhagwat-new', region:'us-east-2'){
-                    echo 'Deploying Dynatrace agent'
-                    //sh 'kubectl create namespace dynatrace'
-                    //sh 'kubectl apply -f https://github.com/Dynatrace/dynatrace-operator/releases/download/v0.7.2/kubernetes.yaml'
-                    sh 'kubectl -n dynatrace wait pod --for=condition=ready --selector=app.kubernetes.io/name=dynatrace-operator,app.kubernetes.io/component=webhook --timeout=600s'
-                    sh 'kubectl apply -f dynakube.yaml'
+                withAWS(credentials:'bhagwat-new',region:'us-east-2'){
+                    dir('terraform'){
+                        echo 'Destroy Stage'
+                        //sh 'terraform destroy --auto-approve'
+                    }
+                    
                 }
             }
         }
